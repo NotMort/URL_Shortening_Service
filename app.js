@@ -12,4 +12,3 @@ app.use('/', urlRoutes);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => app.listen(3000, () => console.log('Running on port 3000')))
   .catch(err => console.error(err));
-
