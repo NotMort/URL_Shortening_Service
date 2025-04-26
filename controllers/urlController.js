@@ -1,7 +1,7 @@
-const Url = require('../models/Url');
-const { nanoid } = require('nanoid');
+import Url from '../models/Url.js';
+import { nanoid } from 'nanoid';
 
-exports.createShortUrl = async (req, res) => {
+export const createShortUrl = async (req, res) => {
   const { url } = req.body;
   if (!url) return res.status(400).json({ error: 'URL is required' });
 
@@ -12,7 +12,7 @@ exports.createShortUrl = async (req, res) => {
   res.status(201).json(newUrl);
 };
 
-exports.getOriginalUrl = async (req, res) => {
+export const getOriginalUrl = async (req, res) => {
   const { shortCode } = req.params;
   const found = await Url.findOne({ shortCode });
 
@@ -25,7 +25,7 @@ exports.getOriginalUrl = async (req, res) => {
   res.status(200).json(found);
 };
 
-exports.updateUrl = async (req, res) => {
+export const updateUrl = async (req, res) => {
   const { shortCode } = req.params;
   const { url } = req.body;
   const found = await Url.findOne({ shortCode });
@@ -39,7 +39,7 @@ exports.updateUrl = async (req, res) => {
   res.status(200).json(found);
 };
 
-exports.deleteUrl = async (req, res) => {
+export const deleteUrl = async (req, res) => {
   const { shortCode } = req.params;
   const deleted = await Url.findOneAndDelete({ shortCode });
 
@@ -48,7 +48,7 @@ exports.deleteUrl = async (req, res) => {
   res.sendStatus(204);
 };
 
-exports.getStats = async (req, res) => {
+export const getStats = async (req, res) => {
   const { shortCode } = req.params;
   const found = await Url.findOne({ shortCode });
 

@@ -1,11 +1,18 @@
-const express = require('express');
+import express from 'express';
+import {
+  createShortUrl,
+  getOriginalUrl,
+  updateUrl,
+  deleteUrl,
+  getStats
+} from '../controllers/urlController.js';
+
 const router = express.Router();
-const controller = require('../controllers/urlController');
 
-router.post('/shorten', controller.createShortUrl);
-router.get('/shorten/:shortCode', controller.getOriginalUrl);
-router.put('/shorten/:shortCode', controller.updateUrl);
-router.delete('/shorten/:shortCode', controller.deleteUrl);
-router.get('/shorten/:shortCode/stats', controller.getStats);
+router.post('/shorten', createShortUrl);
+router.get('/shorten/:shortCode', getOriginalUrl);
+router.put('/shorten/:shortCode', updateUrl);
+router.delete('/shorten/:shortCode', deleteUrl);
+router.get('/shorten/:shortCode/stats', getStats);
 
-module.exports = router;
+export default router;
